@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusIQ - AI Student Decision Intelligence</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#eef4ff;
+color:#222;
+}
+
+header{
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+color:white;
+padding:50px 20px;
+text-align:center;
+}
+
+header h1{
+font-size:48px;
+margin-bottom:10px;
+}
+
+header p{
+font-size:20px;
+opacity:.9;
+}
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+padding:40px 0;
+}
+
+.hero{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+align-items:center;
+margin-bottom:40px;
+}
+
+.hero-text h2{
+font-size:40px;
+margin-bottom:20px;
+color:#1e3c72;
+}
+
+.hero-text p{
+font-size:18px;
+line-height:1.7;
+margin-bottom:25px;
+}
+
+button{
+background:#1e88e5;
+color:white;
+border:none;
+padding:14px 28px;
+font-size:16px;
+border-radius:8px;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#1565c0;
+}
+
+.dashboard{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+.dashboard h3{
+margin-bottom:20px;
+color:#1e3c72;
+}
+
+.card-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-top:30px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card h3{
+margin-bottom:12px;
+color:#1e3c72;
+}
+
+.progress{
+height:12px;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+margin-top:8px;
+}
+
+.bar{
+height:100%;
+background:#1e88e5;
+}
+
+.ai-box{
+margin-top:40px;
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+textarea{
+width:100%;
+height:100px;
+padding:12px;
+margin-top:15px;
+border-radius:10px;
+border:1px solid #ccc;
+resize:none;
+}
+
+.result{
+margin-top:20px;
+background:#f5f8ff;
+padding:20px;
+border-radius:10px;
+line-height:1.7;
+}
+
+footer{
+background:#1e3c72;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:50px;
+}
+
+@media(max-width:768px){
+.hero{
+grid-template-columns:1fr;
+}
+
+header h1{
+font-size:36px;
+}
+
+.hero-text h2{
+font-size:30px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>CampusIQ</h1>
+<p>AI Powered Student Decision Intelligence Platform</p>
+</header>
+
+<div class="container">
+
+<div class="hero">
+
+<div class="hero-text">
+<h2>Make Smarter Academic Decisions</h2>
+
+<p>
+CampusIQ helps students monitor attendance, marks, assignments and exams.
+It predicts academic risk and provides AI-powered study recommendations
+to improve performance before problems arise.
+</p>
+
+<button onclick="scrollToAI()">Try AI Assistant</button>
+
+</div>
+
+<div class="dashboard">
+
+<h3>Student Dashboard</h3>
+
+<p><b>Attendance</b> 82%</p>
+<div class="progress"><div class="bar" style="width:82%"></div></div>
+
+<br>
+
+<p><b>Maths</b> 78%</p>
+<div class="progress"><div class="bar" style="width:78%"></div></div>
+
+<br>
+
+<p><b>Programming</b> 90%</p>
+<div class="progress"><div class="bar" style="width:90%"></div></div>
+
+<br>
+
+<p><b>Assignments Completed</b> 6 / 8</p>
+
+</div>
+
+</div>
+
+<div class="card-grid">
+
+<div class="card">
+<h3>📊 Analytics</h3>
+<p>Visualize attendance, marks and academic performance.</p>
+</div>
+
+<div class="card">
+<h3>🤖 AI Assistant</h3>
+<p>Receive intelligent academic recommendations.</p>
+</div>
+
+<div class="card">
+<h3>📅 Study Planner</h3>
+<p>Create personalized study schedules.</p>
+</div>
+
+<div class="card">
+<h3>📈 Prediction</h3>
+<p>Predict GPA and backlog risk using AI insights.</p>
+</div>
+
+</div>
+
+<div class="ai-box" id="assistant">
+
+<h2>AI Academic Assistant</h2>
+
+<p>Ask something about your studies.</p>
+
+<textarea id="question" placeholder="Example: How can I improve my Maths score?"></textarea>
+
+<br><br>
+
+<button onclick="answer()">Generate Recommendation</button>
+
+<div class="result" id="output">
+
+Your personalized AI recommendation will appear here.
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+Built for Google Gen AI Hackathon • CampusIQ © 2026
+
+</footer>
+
+<script>
+
+function scrollToAI(){
+document.getElementById("assistant").scrollIntoView({
+behavior:"smooth"
+});
+}
+
+function answer(){
+
+let q=document.getElementById("question").value.toLowerCase();
+
+let result="";
+
+if(q.includes("math")){
+result="📘 Recommendation: Practice Maths for 2 hours daily, solve previous year papers and revise formulas every evening.";
+}
+
+else if(q.includes("attendance")){
+result="📅 Recommendation: Attend every remaining lecture to stay above 75% attendance and avoid shortages.";
+}
+_____ if(q.includes("assignment")){
+result="📝 Recommendation: Complete pending assignments first because they directly improve internal marks.";
+}
+
+else if(q.includes("exam")){
+result="🎯 Recommendation: Focus on weak subjects first, revise consistently and take one mock test every day.";
+}
+
+else if(q===""){
+result="Please enter a question.";
+}
+
+else{
+result="🤖 AI Suggestion: Maintain consistent study habits, revise daily, complete assignments on time and monitor your attendance for better academic performance.";
+}
+
+document.getElementById("output").innerHTML=result;
+
+}
+
+</script>
+
+</body>
+</html>
